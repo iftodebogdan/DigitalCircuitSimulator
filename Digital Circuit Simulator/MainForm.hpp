@@ -1,7 +1,7 @@
 #pragma once
 
-#include "EditForm.h"
-#include "IOForm.h"
+#include "EditForm.hpp"
+#include "IOForm.hpp"
 
 namespace DigitalCircuitSimulator {
 

@@ -83,25 +83,25 @@
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EditForm.h">
+    <ClInclude Include="EditForm.hpp">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="IOForm.h">
+    <ClInclude Include="IOForm.hpp">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MainForm.h">
+    <ClInclude Include="MainForm.hpp">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EditForm.resx">
-      <DependentUpon>EditForm.h</DependentUpon>
+      <DependentUpon>EditForm.hpp</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IOForm.resx">
-      <DependentUpon>IOForm.h</DependentUpon>
+      <DependentUpon>IOForm.hpp</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.h</DependentUpon>
+      <DependentUpon>MainForm.hpp</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

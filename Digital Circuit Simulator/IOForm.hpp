@@ -151,8 +151,8 @@ namespace DigitalCircuitSimulator {
 					this->numericUpDown1->Value = 16;
 			 }
 private: System::Void numericUpDown2_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-				if(this->numericUpDown2->Value > 16)
-					this->numericUpDown2->Value = 16;
+				if(this->numericUpDown2->Value > 8)
+					this->numericUpDown2->Value = 8;
 		 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 this->Hide();

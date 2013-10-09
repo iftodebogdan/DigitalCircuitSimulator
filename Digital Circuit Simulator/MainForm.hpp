@@ -78,6 +78,7 @@ namespace DigitalCircuitSimulator {
 			this->setupToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->addToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->addToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->editToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->removeToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStripSeparator1 = (gcnew System::Windows::Forms::ToolStripSeparator());
 			this->removeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -87,7 +88,6 @@ namespace DigitalCircuitSimulator {
 			this->columnHeader3 = (gcnew System::Windows::Forms::ColumnHeader());
 			this->columnHeader4 = (gcnew System::Windows::Forms::ColumnHeader());
 			this->columnHeader5 = (gcnew System::Windows::Forms::ColumnHeader());
-			this->editToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -97,7 +97,8 @@ namespace DigitalCircuitSimulator {
 				this->gateToolStripMenuItem});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(454, 24);
+			this->menuStrip1->Padding = System::Windows::Forms::Padding(8, 2, 0, 2);
+			this->menuStrip1->Size = System::Drawing::Size(284, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -111,7 +112,7 @@ namespace DigitalCircuitSimulator {
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(92, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::exitToolStripMenuItem_Click);
 			// 
@@ -146,6 +147,13 @@ namespace DigitalCircuitSimulator {
 			this->addToolStripMenuItem1->Text = L"Add";
 			this->addToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainForm::addToolStripMenuItem1_Click);
 			// 
+			// editToolStripMenuItem
+			// 
+			this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
+			this->editToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->editToolStripMenuItem->Text = L"Edit";
+			this->editToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::editToolStripMenuItem_Click);
+			// 
 			// removeToolStripMenuItem1
 			// 
 			this->removeToolStripMenuItem1->Name = L"removeToolStripMenuItem1";
@@ -169,12 +177,15 @@ namespace DigitalCircuitSimulator {
 			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(5) {this->columnHeader1, this->columnHeader2, 
 				this->columnHeader3, this->columnHeader4, this->columnHeader5});
 			this->listView1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->listView1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
 			this->listView1->FullRowSelect = true;
 			this->listView1->HeaderStyle = System::Windows::Forms::ColumnHeaderStyle::Nonclickable;
 			this->listView1->Location = System::Drawing::Point(0, 24);
+			this->listView1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->listView1->Name = L"listView1";
 			this->listView1->Scrollable = false;
-			this->listView1->Size = System::Drawing::Size(454, 437);
+			this->listView1->Size = System::Drawing::Size(284, 187);
 			this->listView1->TabIndex = 1;
 			this->listView1->UseCompatibleStateImageBehavior = false;
 			this->listView1->View = System::Windows::Forms::View::Details;
@@ -183,49 +194,43 @@ namespace DigitalCircuitSimulator {
 			// 
 			// columnHeader1
 			// 
-			this->columnHeader1->Text = L"Gate #";
+			this->columnHeader1->Text = L"#";
 			this->columnHeader1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->columnHeader1->Width = 50;
+			this->columnHeader1->Width = 25;
 			// 
 			// columnHeader2
 			// 
 			this->columnHeader2->Text = L"Function";
 			this->columnHeader2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->columnHeader2->Width = 100;
+			this->columnHeader2->Width = 70;
 			// 
 			// columnHeader3
 			// 
 			this->columnHeader3->Text = L"Input 1";
 			this->columnHeader3->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->columnHeader3->Width = 100;
 			// 
 			// columnHeader4
 			// 
 			this->columnHeader4->Text = L"Input 2";
 			this->columnHeader4->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->columnHeader4->Width = 100;
 			// 
 			// columnHeader5
 			// 
 			this->columnHeader5->Text = L"Output";
 			this->columnHeader5->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->columnHeader5->Width = 100;
-			// 
-			// editToolStripMenuItem
-			// 
-			this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
-			this->editToolStripMenuItem->Size = System::Drawing::Size(152, 22);
-			this->editToolStripMenuItem->Text = L"Edit";
-			this->editToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::editToolStripMenuItem_Click);
+			this->columnHeader5->Width = 65;
 			// 
 			// MainForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(454, 461);
+			this->ClientSize = System::Drawing::Size(284, 211);
 			this->Controls->Add(this->listView1);
 			this->Controls->Add(this->menuStrip1);
+			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
 			this->MainMenuStrip = this->menuStrip1;
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->MaximizeBox = false;
 			this->Name = L"MainForm";
 			this->Text = L"Digital Circuit Simulator";

@@ -112,7 +112,7 @@ namespace DigitalCircuitSimulator {
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(92, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::exitToolStripMenuItem_Click);
 			// 
@@ -143,21 +143,21 @@ namespace DigitalCircuitSimulator {
 			// addToolStripMenuItem1
 			// 
 			this->addToolStripMenuItem1->Name = L"addToolStripMenuItem1";
-			this->addToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
+			this->addToolStripMenuItem1->Size = System::Drawing::Size(117, 22);
 			this->addToolStripMenuItem1->Text = L"Add";
 			this->addToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainForm::addToolStripMenuItem1_Click);
 			// 
 			// editToolStripMenuItem
 			// 
 			this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
-			this->editToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->editToolStripMenuItem->Size = System::Drawing::Size(117, 22);
 			this->editToolStripMenuItem->Text = L"Edit";
 			this->editToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::editToolStripMenuItem_Click);
 			// 
 			// removeToolStripMenuItem1
 			// 
 			this->removeToolStripMenuItem1->Name = L"removeToolStripMenuItem1";
-			this->removeToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
+			this->removeToolStripMenuItem1->Size = System::Drawing::Size(117, 22);
 			this->removeToolStripMenuItem1->Text = L"Remove";
 			this->removeToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainForm::removeToolStripMenuItem1_Click);
 			// 
@@ -182,7 +182,7 @@ namespace DigitalCircuitSimulator {
 			this->listView1->FullRowSelect = true;
 			this->listView1->HeaderStyle = System::Windows::Forms::ColumnHeaderStyle::Nonclickable;
 			this->listView1->Location = System::Drawing::Point(0, 24);
-			this->listView1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->listView1->Margin = System::Windows::Forms::Padding(4);
 			this->listView1->Name = L"listView1";
 			this->listView1->Scrollable = false;
 			this->listView1->Size = System::Drawing::Size(284, 187);
@@ -229,12 +229,16 @@ namespace DigitalCircuitSimulator {
 			this->Controls->Add(this->menuStrip1);
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MainMenuStrip = this->menuStrip1;
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"MainForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Digital Circuit Simulator";
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
+			this->Shown += gcnew System::EventHandler(this, &MainForm::MainForm_Shown);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -290,7 +294,6 @@ private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^ 
 			 this->gateCount = 0;
 			 this->inputCount = 0;
 			 this->outputCount = 0;
-			 OpenIOForm();
 		 }
 private: System::Void removeToolStripMenuItem1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if(!this->listView1->SelectedItems->Count) {
@@ -332,6 +335,9 @@ private: System::Void editToolStripMenuItem_Click(System::Object^  sender, Syste
 			}
 
 			child->Close();
+		 }
+private: System::Void MainForm_Shown(System::Object^  sender, System::EventArgs^  e) {
+			 OpenIOForm();
 		 }
 };
 }

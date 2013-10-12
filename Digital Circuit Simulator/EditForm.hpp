@@ -270,6 +270,7 @@ namespace DigitalCircuitSimulator {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ControlBox = false;
 			this->Controls->Add(this->comboBox4);
 			this->Controls->Add(this->comboBox3);
 			this->Controls->Add(this->comboBox2);
@@ -282,7 +283,12 @@ namespace DigitalCircuitSimulator {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"EditForm";
+			this->ShowInTaskbar = false;
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Add Gate";
 			this->Load += gcnew System::EventHandler(this, &EditForm::EditForm_Load);
 			this->ResumeLayout(false);

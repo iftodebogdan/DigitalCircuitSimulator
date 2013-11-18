@@ -24,6 +24,9 @@
     <ClCompile Include="IOForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InputForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.hpp">
@@ -35,5 +38,19 @@
     <ClInclude Include="EditForm.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InputForm.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EditForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IOForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

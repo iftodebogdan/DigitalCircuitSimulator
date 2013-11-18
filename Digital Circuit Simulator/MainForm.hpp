@@ -2,6 +2,7 @@
 
 #include "EditForm.hpp"
 #include "IOForm.hpp"
+#include "InputForm.hpp"
 
 namespace DigitalCircuitSimulator {
 
@@ -112,7 +113,7 @@ namespace DigitalCircuitSimulator {
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(92, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::exitToolStripMenuItem_Click);
 			// 
@@ -143,21 +144,21 @@ namespace DigitalCircuitSimulator {
 			// addToolStripMenuItem1
 			// 
 			this->addToolStripMenuItem1->Name = L"addToolStripMenuItem1";
-			this->addToolStripMenuItem1->Size = System::Drawing::Size(117, 22);
+			this->addToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
 			this->addToolStripMenuItem1->Text = L"Add";
 			this->addToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainForm::addToolStripMenuItem1_Click);
 			// 
 			// editToolStripMenuItem
 			// 
 			this->editToolStripMenuItem->Name = L"editToolStripMenuItem";
-			this->editToolStripMenuItem->Size = System::Drawing::Size(117, 22);
+			this->editToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->editToolStripMenuItem->Text = L"Edit";
 			this->editToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::editToolStripMenuItem_Click);
 			// 
 			// removeToolStripMenuItem1
 			// 
 			this->removeToolStripMenuItem1->Name = L"removeToolStripMenuItem1";
-			this->removeToolStripMenuItem1->Size = System::Drawing::Size(117, 22);
+			this->removeToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
 			this->removeToolStripMenuItem1->Text = L"Remove";
 			this->removeToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainForm::removeToolStripMenuItem1_Click);
 			// 
@@ -171,6 +172,7 @@ namespace DigitalCircuitSimulator {
 			this->removeToolStripMenuItem->Name = L"removeToolStripMenuItem";
 			this->removeToolStripMenuItem->Size = System::Drawing::Size(166, 22);
 			this->removeToolStripMenuItem->Text = L"Run Simulation";
+			this->removeToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::removeToolStripMenuItem_Click);
 			// 
 			// listView1
 			// 
@@ -338,6 +340,18 @@ private: System::Void editToolStripMenuItem_Click(System::Object^  sender, Syste
 		 }
 private: System::Void MainForm_Shown(System::Object^  sender, System::EventArgs^  e) {
 			 OpenIOForm();
+		 }
+private: void ValidateCircuit() {
+			 //TODO: circuit validation
+		 }
+private: void OpenInputForm() {
+			 //TODO: input form
+			 InputForm^ child = gcnew InputForm(inputCount);
+			 child->ControlBox = false;
+			 child->ShowDialog(this);
+		 }
+private: System::Void removeToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 OpenInputForm();
 		 }
 };
 }

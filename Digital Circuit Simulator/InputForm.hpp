@@ -1,4 +1,6 @@
 #pragma once
+#include <stdio.h>
+#include <Windows.h>
 
 namespace DigitalCircuitSimulator {
 
@@ -8,6 +10,7 @@ namespace DigitalCircuitSimulator {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Runtime::InteropServices;
 
 	/// <summary>
 	/// Summary for InputForm
@@ -15,13 +18,33 @@ namespace DigitalCircuitSimulator {
 	public ref class InputForm : public System::Windows::Forms::Form
 	{
 	public:
-		InputForm(int inputCount)
+		ref struct tGate {
+			String^ index;
+			String^ func;
+			String^ input1;
+			String^ input2;
+			String^ output;
+
+			tGate() {
+				index = gcnew String(L"");
+				func = gcnew String(L"");
+				input1 = gcnew String(L"");
+				input2 = gcnew String(L"");
+				output = gcnew String(L"");
+			}
+		};
+
+	public:
+		InputForm(int inputCount, int outputCount, int gateCount, array<tGate^>^ gateParser)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
 			m_inputCount = inputCount;
+			m_outputCount = outputCount;
+			m_gateCount = gateCount;
+			m_gateParser = gateParser;
 		}
 
 	protected:
@@ -71,7 +94,8 @@ namespace DigitalCircuitSimulator {
 	private: System::Windows::Forms::NumericUpDown^  numericUpDown16;
 	private: array<System::Windows::Forms::Label^>^ labelArray;
 	private: array<System::Windows::Forms::NumericUpDown^>^ numericUpDownArray;
-	private: int m_inputCount;
+	private: int m_inputCount, m_outputCount, m_gateCount;
+	private: array<tGate^>^ m_gateParser;
 
 	private:
 		/// <summary>
@@ -552,7 +576,32 @@ private: System::Void numericUpDown16_ValueChanged(System::Object^  sender, Syst
 					this->numericUpDown16->Value = 1;
 		 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
+			
+			char   psBuffer[128];
+			FILE   *pPipe;
+
+			TCHAR szFileName[MAX_PATH];
+			GetModuleFileName( NULL, szFileName, MAX_PATH );
+
+			String^ szCommand = gcnew String("");
+			szCommand = String::Concat(szCommand, "\"", gcnew String(szFileName), "\"", " ", System::Convert::ToString(m_inputCount), " ", System::Convert::ToString(m_outputCount), " ", System::Convert::ToString(m_gateCount), " ");
+			for(int i = 0; i < m_gateCount; i++)
+				szCommand = String::Concat(szCommand, m_gateParser[i]->func, " ", m_gateParser[i]->input1, " ", m_gateParser[i]->input2, m_gateParser[i]->input2->Length ? " " : "", m_gateParser[i]->output, " ");
+			for(int i = 1; i <= m_inputCount; i++)
+				szCommand = String::Concat(szCommand, numericUpDownArray[i]->Text, i != m_inputCount ? " " : "");
+
+			char* szExecute = (char*)(void*) Marshal::StringToHGlobalAnsi(szCommand);
+			if( (pPipe = _popen( szExecute, "rt" )) == NULL )
+				return;
+			while(fgets(psBuffer, 128, pPipe))
+				printf(psBuffer);
+			if (feof( pPipe))
+				_pclose( pPipe );
+
+			this->Hide();
+			MessageBox::Show(this, gcnew String(psBuffer), gcnew String(psBuffer));
+			this->Close();
+		}
 private: System::Void InputForm_Load(System::Object^  sender, System::EventArgs^  e) {
 			labelArray = gcnew array<System::Windows::Forms::Label^>(17);
 			numericUpDownArray = gcnew array<System::Windows::Forms::NumericUpDown^>(17);

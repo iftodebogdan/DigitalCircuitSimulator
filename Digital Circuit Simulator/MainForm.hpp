@@ -341,17 +341,46 @@ private: System::Void editToolStripMenuItem_Click(System::Object^  sender, Syste
 private: System::Void MainForm_Shown(System::Object^  sender, System::EventArgs^  e) {
 			 OpenIOForm();
 		 }
-private: void ValidateCircuit() {
-			 //TODO: circuit validation
-		 }
-private: void OpenInputForm() {
-			 //TODO: input form
-			 InputForm^ child = gcnew InputForm(inputCount);
+private: void OpenInputForm(array<InputForm::tGate^>^ gateParser) {
+			 InputForm^ child = gcnew InputForm(inputCount, outputCount, gateCount, gateParser);
 			 child->ControlBox = false;
 			 child->ShowDialog(this);
 		 }
 private: System::Void removeToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 OpenInputForm();
+			if(gateCount == 0 || inputCount == 0 || outputCount == 0)
+				 MessageBox::Show(this, "To run the simulation, at least a gate, an input and an output must be added.", "No gates/inputs/outputs");
+			else {
+				array<InputForm::tGate^>^ gateParser = gcnew array<InputForm::tGate^>(8);
+				for(int i = 0; i < 8; i++)
+					gateParser[i] = gcnew InputForm::tGate;
+
+				int iterator = -1;
+				IEnumerator^ listView1Enum = this->listView1->Items->GetEnumerator();
+				listView1Enum->Reset();
+				while(listView1Enum->MoveNext()) {
+					iterator++;
+				
+					IEnumerator^ listView1SubItemsEnum = ((ListViewItem^)(listView1Enum->Current))->SubItems->GetEnumerator();
+					listView1SubItemsEnum->Reset();
+
+					listView1SubItemsEnum->MoveNext();
+					gateParser[iterator]->index = ((ListViewItem::ListViewSubItem^)(listView1SubItemsEnum->Current))->Text;
+
+					listView1SubItemsEnum->MoveNext();
+					gateParser[iterator]->func = ((ListViewItem::ListViewSubItem^)(listView1SubItemsEnum->Current))->Text;
+
+					listView1SubItemsEnum->MoveNext();
+					gateParser[iterator]->input1 = ((ListViewItem::ListViewSubItem^)(listView1SubItemsEnum->Current))->Text;
+
+					listView1SubItemsEnum->MoveNext();
+					gateParser[iterator]->input2 = ((ListViewItem::ListViewSubItem^)(listView1SubItemsEnum->Current))->Text;
+
+					listView1SubItemsEnum->MoveNext();
+					gateParser[iterator]->output = ((ListViewItem::ListViewSubItem^)(listView1SubItemsEnum->Current))->Text;
+				}
+
+				OpenInputForm(gateParser);
+			}
 		 }
 };
 }

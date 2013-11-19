@@ -584,6 +584,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 			GetModuleFileName( NULL, szFileName, MAX_PATH );
 
 			String^ szCommand = gcnew String("");
+			String^ szResult = gcnew String("");
 			szCommand = String::Concat(szCommand, "\"", gcnew String(szFileName), "\"", " ", System::Convert::ToString(m_inputCount), " ", System::Convert::ToString(m_outputCount), " ", System::Convert::ToString(m_gateCount), " ");
 			for(int i = 0; i < m_gateCount; i++)
 				szCommand = String::Concat(szCommand, m_gateParser[i]->func, " ", m_gateParser[i]->input1, " ", m_gateParser[i]->input2, m_gateParser[i]->input2->Length ? " " : "", m_gateParser[i]->output, " ");
@@ -594,12 +595,12 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 			if( (pPipe = _popen( szExecute, "rt" )) == NULL )
 				return;
 			while(fgets(psBuffer, 128, pPipe))
-				printf(psBuffer);
+				szResult = String::Concat(szResult, gcnew String(psBuffer));
 			if (feof( pPipe))
 				_pclose( pPipe );
 
 			this->Hide();
-			MessageBox::Show(this, gcnew String(psBuffer), gcnew String(psBuffer));
+			MessageBox::Show(this, gcnew String(szResult), gcnew String(szResult));
 			this->Close();
 		}
 private: System::Void InputForm_Load(System::Object^  sender, System::EventArgs^  e) {

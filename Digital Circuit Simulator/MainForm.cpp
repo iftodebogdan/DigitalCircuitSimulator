@@ -28,7 +28,7 @@ void main(array<String^>^ args) {
 		//	[gate 2 function] [gate 2 input 1] [gate 2 input 2] [gate 2 output]
 		//		...
 		//	[input 1 value] [input 2 value] ... [input n value]
-		printf("STAHP!");
+		printf("STAHP!\nPLIZ!\nIT HERTZ!");
 	}
 	
 	MPI_Finalize();

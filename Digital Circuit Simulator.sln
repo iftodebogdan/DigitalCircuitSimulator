@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Digital Circuit Simulator", "Digital Circuit Simulator\Digital Circuit Simulator.vcxproj", "{2F9A5D1E-C1FD-42FB-B7D7-C96B4418FE1B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DCS_MPI", "DCS_MPI\DCS_MPI.vcxproj", "{75D797F1-5579-4C9B-8B42-79E771A76466}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{2F9A5D1E-C1FD-42FB-B7D7-C96B4418FE1B}.Debug|Win32.Build.0 = Debug|Win32
 		{2F9A5D1E-C1FD-42FB-B7D7-C96B4418FE1B}.Release|Win32.ActiveCfg = Release|Win32
 		{2F9A5D1E-C1FD-42FB-B7D7-C96B4418FE1B}.Release|Win32.Build.0 = Release|Win32
+		{75D797F1-5579-4C9B-8B42-79E771A76466}.Debug|Win32.ActiveCfg = Debug|Win32
+		{75D797F1-5579-4C9B-8B42-79E771A76466}.Debug|Win32.Build.0 = Debug|Win32
+		{75D797F1-5579-4C9B-8B42-79E771A76466}.Release|Win32.ActiveCfg = Release|Win32
+		{75D797F1-5579-4C9B-8B42-79E771A76466}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

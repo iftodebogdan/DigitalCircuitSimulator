@@ -580,17 +580,14 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 			char   psBuffer[128];
 			FILE   *pPipe;
 
-			TCHAR szFileName[MAX_PATH];
-			GetModuleFileName( NULL, szFileName, MAX_PATH );
-
 			String^ szCommand = gcnew String("");
 			String^ szResult = gcnew String("");
-			szCommand = String::Concat(szCommand, "\"", gcnew String(szFileName), "\"", " ", System::Convert::ToString(m_inputCount), " ", System::Convert::ToString(m_outputCount), " ", System::Convert::ToString(m_gateCount), " ");
+			szCommand = String::Concat(szCommand, "mpiexec -n ", m_gateCount + 1, " DCS_MPI ", System::Convert::ToString(m_inputCount), " ", System::Convert::ToString(m_outputCount), " ", System::Convert::ToString(m_gateCount), " ");
 			for(int i = 0; i < m_gateCount; i++)
 				szCommand = String::Concat(szCommand, m_gateParser[i]->func, " ", m_gateParser[i]->input1, " ", m_gateParser[i]->input2, m_gateParser[i]->input2->Length ? " " : "", m_gateParser[i]->output, " ");
 			for(int i = 1; i <= m_inputCount; i++)
 				szCommand = String::Concat(szCommand, numericUpDownArray[i]->Text, i != m_inputCount ? " " : "");
-
+				
 			char* szExecute = (char*)(void*) Marshal::StringToHGlobalAnsi(szCommand);
 			if( (pPipe = _popen( szExecute, "rt" )) == NULL )
 				return;
@@ -600,7 +597,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 				_pclose( pPipe );
 
 			this->Hide();
-			MessageBox::Show(this, gcnew String(szResult), gcnew String(szResult));
+			MessageBox::Show(this, gcnew String(szResult), "Output");
 			this->Close();
 		}
 private: System::Void InputForm_Load(System::Object^  sender, System::EventArgs^  e) {
